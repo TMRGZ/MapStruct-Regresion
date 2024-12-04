@@ -9,11 +9,13 @@ import java.util.List;
 @With
 @Builder
 public record EmployeeDto(
-        String employeeName,
+        String name,
 
         EmployeeDto reportsTo,
 
-        List<EmployeeDto> team
+				List<EmployeeDto> team,
+
+				List<EmployeeEquipmentDto> equipmentList
 ) {
 
 }

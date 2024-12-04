@@ -1,19 +1,17 @@
 package org.example.mapstructerror.mapper;
 
-import org.example.mapstructerror.dto.Employee;
 import org.example.mapstructerror.dto.EmployeeDto;
+import org.example.mapstructerror.entity.Employee;
 import org.example.mapstructerror.mapper.utils.CycleAvoidingMappingContext;
 import org.mapstruct.Context;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = EmployeeEquipmentMapper.class)
 public interface EmployeeMapper {
 
-    @Mapping(source = "employeeName", target = "name")
-    Employee toEmployee(EmployeeDto employeeDto, @Context CycleAvoidingMappingContext context);
+    Employee map(EmployeeDto employeeDto, @Context CycleAvoidingMappingContext context);
 
     @InheritInverseConfiguration
-    EmployeeDto fromEmployee(Employee employee, @Context CycleAvoidingMappingContext context);
+    EmployeeDto map(Employee employee, @Context CycleAvoidingMappingContext context);
 }
